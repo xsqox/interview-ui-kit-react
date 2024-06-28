@@ -1,3 +1,3 @@
-import { ThemeSelector} from "./components/theme";
+import { ThemeSelector } from './components/theme';
 
-export { ThemeSelector}
+export { ThemeSelector };
