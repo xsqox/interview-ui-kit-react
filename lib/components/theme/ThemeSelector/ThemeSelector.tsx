@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import _ from 'lodash';
 
-import {useTheme} from '@/theme/useTheme';
-import { getFromLocalStorage } from '@/utils/storage';
-import {ITheme} from "@/theme/types";
+import {useTheme} from '../useTheme';
+import { getFromLocalStorage } from '../../../../src/utils/storage';
+import {ITheme} from "../types";
 
 const ThemedButton = styled.button`
     border: 0;

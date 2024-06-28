@@ -1,5 +1,9 @@
 # React + TypeScript + Vite
 
+https://nuri.gg/vite-react-typescript-tailwind-npm-package/
+
+https://storybook.js.org/tutorials/intro-to-storybook/react/en/simple-component/
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
