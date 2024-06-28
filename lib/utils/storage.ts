@@ -7,5 +7,4 @@ export const getFromLocalStorage = (key: string) => {
     if (value ) {
         return JSON.parse(value);
     }
-    window.localStorage?.setItem(key, JSON.stringify(value));
 }

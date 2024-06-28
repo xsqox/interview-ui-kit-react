@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import styled from "styled-components";
-import _ from 'lodash';
 
 import {useTheme} from '../useTheme';
-import { getFromLocalStorage } from '../../../../src/utils/storage';
+import {saveToLocalStorage} from '../../../utils/storage';
 import {ITheme} from "../types";
+import * as allThemes from '../schema.json';
+import {GlobalStyles} from "../GlobalStyles";
+import WebFont from "webfontloader";
+
 
 const ThemedButton = styled.button`
     border: 0;
@@ -38,21 +41,32 @@ const Header = styled.h2`
     justify-content: space-around;
 `;
 
-export const ThemeSelector = ({setter }: { setter: (theme: ITheme) =>void}) => {
-    const themesFromStore = getFromLocalStorage('all-themes');
-    const [data] = useState<Record<string, ITheme>>(themesFromStore.data);
-    const [themes, setThemes] = useState<string[]>([]);
-    const {setTheme} = useTheme();
+export const ThemeSelector = () => {
+    saveToLocalStorage('all-themes', allThemes);
+
+    const availableThemes = useMemo(() => {
+        return allThemes.data;
+    }, [allThemes]);
+
+    const themeNames = useMemo(() => {
+        return Object.keys(availableThemes);
+    }, [availableThemes]);
+
+    const {getFonts, setTheme } = useTheme();
 
     const themeSwitcher = (selectedTheme: ITheme) => {
+        console.info('sele', selectedTheme);
         setTheme(selectedTheme);
-        setter(selectedTheme);
     };
 
-    useEffect(() => {
-        setThemes(_.keys(data).filter((key) => key !== 'id'));
-    }, [data]);
 
+    useEffect(() => {
+        WebFont.load({
+            google: {
+                families: getFonts()
+            }
+        });
+    });
 
     const ThemeCard = ({theme}: {theme: ITheme}) => {
         const { name, colors, font } = theme;
@@ -73,12 +87,13 @@ export const ThemeSelector = ({setter }: { setter: (theme: ITheme) =>void}) => {
 
     return (
         <div>
+            <GlobalStyles/>
             <Header>Select a Theme from below</Header>
             <List>
                 {
-                    themes.length > 0 &&
-                    themes.map(theme =>(
-                        <ThemeCard theme={data[theme]} key={data[theme].id} />
+                    themeNames.length > 0 &&
+                    themeNames.map(theme =>(
+                        <ThemeCard theme={availableThemes[theme]} key={availableThemes[theme].id} />
                     ))
                 }
             </List>

@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { mapValues, values } from 'lodash';
 
-import { saveToLocalStorage, getFromLocalStorage} from "../../../../src/utils/storage";
+import { saveToLocalStorage, getFromLocalStorage} from "../../../utils/storage";
 import { ITheme} from "../types";
 
 export const useTheme = () => {

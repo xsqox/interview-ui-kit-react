@@ -4,7 +4,7 @@ import App from './App.tsx'
 import './index.css'
 import * as themes from '../lib/components/theme/schema.json';
 
-import {saveToLocalStorage} from "./utils/storage";
+import {saveToLocalStorage} from "../lib/utils/storage";
 
 const ThemeIndex = () => {
     saveToLocalStorage('all-themes', themes);
