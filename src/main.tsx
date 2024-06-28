@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import * as themes from './theme/schema.json';
+import * as themes from '../lib/components/theme/schema.json';
 
-import {saveToLocalStorage} from "./utils/storage";
+import {saveToLocalStorage} from "../lib/utils/storage";
 
 const ThemeIndex = () => {
     saveToLocalStorage('all-themes', themes);
